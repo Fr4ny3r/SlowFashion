@@ -1,59 +1,18 @@
+import React, { useState, useEffect } from 'react';
+import { Product, Filters, Category } from './types';
+import ProductList from './components/ProductList';
+import FilterBar from './components/FilterBar';
 import Model from './canvas/Model';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stage } from '@react-three/drei';
 import Navv from './Nav.tsx'
 import CardProduct from './CardProduct.tsx'
 import OffersCard from './OffersCards.tsx'
+import productsData from './products.json';
+import OffersProducts from './OffersProducts.json';
 import './App.css'
 
 
-function App() {
-
-
-    const OffersProducts = [
-      {
-        name : "Adidas shoes",
-        desc : "White shoes with black lines",
-        price: "45",
-        stock: "68",
-        img : "https://images.unsplash.com/photo-1551116198-01d550c9809c?q=80&w=696&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      },
-      {
-        name : "Sapphire necklace",
-        desc : "Brilliant sapphire, large with gold chain",
-        price: "423",
-        stock: "8",
-        img : "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      },
-      {
-        name : "Air Force 1",
-        desc : "Zapatilla OFF WHITE x Nike",
-        price: "74",
-        stock: "28",
-        img : "https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      },
-      {
-        name : "Perfume for men",
-        desc : "Fragrant masculine scent",
-        price: "134",
-        stock: "10",
-        img : "https://images.unsplash.com/photo-1723391962154-8a2b6299bc09?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      },
-      {
-        name : "Perfume for women",
-        desc : "Fragrant feminine scent",
-        price: "156",
-        stock: "7",
-        img : "https://images.unsplash.com/photo-1613521140785-e85e427f8002?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      },
-      {
-        name : "Gold earrings",
-        desc : "Thin, gold-plated",
-        price: "12",
-        stock: "10",
-        img : "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      }
-    ]
 
 
     const Categories = [
@@ -76,6 +35,46 @@ function App() {
         img : "https://images.unsplash.com/photo-1590736704728-f4730bb30770?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ]
+
+    const initialFilters: Filters = { category: 'All', searchTerm: '' };
+
+    const App: React.FC = () => {
+      // 1. Tipamos el estado de los productos
+      const [products, setProducts] = useState<Product[]>([]);
+      // 2. Tipamos el estado de los filtros
+      const [filters, setFilters] = useState<Filters>(initialFilters);
+      
+      useEffect(() => {
+        // TypeScript sabe que productsData es Product[]
+        setProducts(productsData as Product[]); 
+      }, []);
+
+      // La función de filtrado es la misma, pero TypeScript te ayuda
+      const getFilteredProducts = (): Product[] => {
+        let filtered: Product[] = products.filter(product => 
+          filters.category === 'All' || product.category === filters.category
+        );
+
+        if (filters.searchTerm) {
+          const lowerCaseSearch = filters.searchTerm.toLowerCase();
+          filtered = filtered.filter(product =>
+            product.name.toLowerCase().includes(lowerCaseSearch) ||
+            product.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearch))
+          );
+        }
+        
+        return filtered;
+      };
+
+      // Tipamos el argumento de la función de cambio de filtro
+      const handleFilterChange = (newFilters: Partial<Filters>) => {
+        setFilters(prevFilters => ({
+          ...prevFilters,
+          ...newFilters
+        }));
+      };
+
+
 
 
   return (
@@ -105,7 +104,7 @@ function App() {
       />     
       <div></div>
     </div>
-  
+
     <main
       className="siShadow relative bg-red-200 text-6xl p-8"
 
@@ -119,7 +118,20 @@ function App() {
         />
       </div>
     </main>
-    <main className="h-69"></main>
+    <main className="p-10 my-30 bg-blue-500">
+      <span>
+            <div className="store-container">
+      <h1>Tienda F.Slow</h1>
+      
+      <FilterBar onFilterChange={handleFilterChange} currentFilters={filters} />
+      
+      <div className="product-display">
+        {/* Renderiza los productos filtrados */}
+        <ProductList products={getFilteredProducts()} />
+      </div>
+    </div>
+      </span>
+    </main>
     </>
   )
 }

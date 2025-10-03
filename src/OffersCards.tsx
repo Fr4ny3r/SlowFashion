@@ -16,6 +16,7 @@ function OffersCard( products : Products[]) {
   const item  = products.products.map(p => {
     return (
     <div 
+      onClick={()=>{window.open("https://www.youtube.com")}}
       className="bg-[#FFFFFF] flex w-full opacity-100 relative hover:cursor-pointer transition-[scale] hover:scale-[1.05] text-red-100 text-2xl z-50 text-[#1f1135] "
       style={{maxWidth: "380px"}}
     >

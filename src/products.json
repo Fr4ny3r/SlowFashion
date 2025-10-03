@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Anillo Esmeralda 'Moment'",
+    "category": "Joyería",
+    "subcategory": "Anillos",
+    "price": 120,
+    "stock": 5,
+    "tags": ["Lujo", "Verde", "Oro"],
+    "isFeatured": true
+  },
+  {
+    "id": 2,
+    "name": "Camisa Lino 'F.Slow'",
+    "category": "Ropa",
+    "subcategory": "Camisas",
+    "price": 75,
+    "stock": 20,
+    "tags": ["Casual", "Lino", "Verano"],
+    "isFeatured": false
+  },
+  {
+    "id": 3,
+    "name": "Perfume 'Zenith' 50ml",
+    "category": "Fragancia",
+    "subcategory": "Perfumes",
+    "price": 90,
+    "stock": 12,
+    "tags": ["Cítrico", "Larga Duración"],
+    "isFeatured": true
+  }
+]
