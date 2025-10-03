@@ -26,7 +26,7 @@ function OffersCard( products : Products[]) {
      </div>
      <div className="noShadow font-bold text-white absolute flex gap-2 right-0 bottom-0 mr-4 mb-5">
       <span className="relative p-2 bg-red-400 pl-6">
-        {p.price}
+        {p.price}$
         <span className="absolute bg-[#fbdd74] text-sm left-1 -top-2 text-black">Price</span>
       </span>
       <span className="relative p-2 bg-red-400 pl-6">
