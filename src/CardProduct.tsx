@@ -2,19 +2,19 @@
 
 type Products = {
 
-  name: String,
-  desc: String,
-  price: String,
-  img: String
+  name: string,
+  desc: string,
+  price: string,
+  img: string
 
 }
 
 
-function CardProduct( products : Products[]) {
-  const item  = products.products.map(p => {
+function CardProduct({ products }: { products: Products[] }) {
+  const item  = products.map(p => {
     return (
     <div 
-      className="bg-[#e2daeb] opacity-100 -mb-50 hover:cursor-pointer transition-[scale] hover:scale-[1.05] text-red-100 text-2xl z-50 text-[#1f1135] border-[#301e4e] "
+      className="bg-[#e2daeb] user-none opacity-100 -mb-50 hover:cursor-pointer transition-[scale] hover:scale-[1.05] text-red-100 text-2xl z-50 text-[#1f1135] border-[#301e4e] "
       style={{width: "210px", maxHeight: "400px", boxShadow: "5px 8px 1px 1px rgba(0, 0, 0, 0.6)"}}
     >
      <img src={p.img} alt="" className=""/>

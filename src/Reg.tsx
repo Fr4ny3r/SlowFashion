@@ -1,16 +1,16 @@
-import { useState } from 'React'
+import { useState } from 'react';
 import { useCookies } from  'react-cookie';
 
 
 function Reg() {
 
   const [login, setLogin] = useState<Boolean>(false)
-  const [userName, setUserName] = useState<String>('')
-  const [last, setLast] = useState<String>('')
-  const [password, setPassword] = useState<String>('')
+  const [userName, setUserName] = useState<string>('')
+  const [last, setLast] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const  [cookie, setCookie] = useCookies(['LOGIN_INFO'])
 
-  const handleSetCookie = (e)=> {
+  const handleSetCookie = (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
 
     const data = {
@@ -43,7 +43,7 @@ function Reg() {
             login ?
               (
                 <div className="absolute bg-white h-11/12 w-11/12 text-green-500 left-1/2 top-1/2 -translate-1/2 flex justify-center items-center  ">
-                  <svg  xmlns="http://www.w3.org/2000/svg"  width="128"  height="128"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
+                  <svg  xmlns="http://www.w3.org/2000/svg"  width="128"  height="128"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
                 </div>
               ) :
               (
@@ -62,7 +62,7 @@ function Reg() {
                 required
                 id="name"
                 type="text"
-                maxLength="9"
+                maxLength={9}
                 placeholder={"Luis"}
                 value={userName}
                 onChange={(e)=>{setUserName(e.target.value)}}
@@ -73,7 +73,7 @@ function Reg() {
                 required
                 id="last"
                 type="text"
-                maxLength="9"
+                maxLength={9}
                 placeholder={"Lopez"}
                 value={last}
                 onChange={(e)=>{setLast(e.target.value)}}

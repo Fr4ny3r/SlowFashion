@@ -1,19 +1,10 @@
+// src/canvas/Model.jsx
+import React from 'react';
 import { useGLTF } from '@react-three/drei';
 
-useGLTF.preload('/public/diamond.glb');
+export function Model(props) {
+  const { scene } = useGLTF('/diamond.glb');
+  return <primitive object={scene} {...props} />;
+}
 
-
-const Model = ({ scale }) => {
-
-  const { scene } = useGLTF('/public/diamond.glb');
-  
-  
-  return <>
-    <group>
-      <primitive object={scene} scale={scale} />
-    </group>
-  
-  </>;
-};
-
-export default Model;
+useGLTF.preload('/diamond.glb');

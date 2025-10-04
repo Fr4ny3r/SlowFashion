@@ -17,7 +17,7 @@
     "price": 75,
     "stock": 20,
     "tags": ["Casual", "Lino", "Verano"],
-    "isFeatured": false
+    "isFeatured": true
   },
   {
     "id": 3,

@@ -1,6 +1,6 @@
 // src/components/FilterBar.tsx
 import React from 'react';
-import { Filters, Category } from '../types';
+import type { Filters, Category } from '../types';
 
 // Definimos la interfaz para las PROPS de este componente
 interface FilterBarProps {
@@ -12,7 +12,6 @@ interface FilterBarProps {
 const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, currentFilters }) => {
   
   // Usamos el tipo Category para definir las opciones
-  const categories: Category[] = ['All', 'Joyería', 'Ropa', 'Fragancia']; 
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     // TypeScript sabe que el valor es una Category

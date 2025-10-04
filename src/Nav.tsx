@@ -1,4 +1,4 @@
-import { useState } from 'React';
+import { useState } from 'react';
 import { useCookies } from  'react-cookie';
 import Reg from './Reg.tsx'
 import './Nav.css';

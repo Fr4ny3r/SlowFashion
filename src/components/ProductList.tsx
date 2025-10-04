@@ -1,9 +1,11 @@
-// src/components/FeaturedProducts.js
-import React from 'react';
+// src/components/FeaturedProducts.jsx
+import type { Product, Filters, Category } from '../types';
 import ProductCard from './ProductCard'; // Reutilizar el componente de tarjeta
 
-function ProductList({ products }) {
+function ProductList({ products } : { products: Product[] }) {
   // Filtra la lista para obtener solo los destacados
+
+  
   const featured = products.filter(product => product.isFeatured);
 
   return (

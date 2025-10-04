@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Product, Filters, Category } from './types';
+import type { Product, Filters, Category } from './types';
 import ProductList from './components/ProductList';
 import FilterBar from './components/FilterBar';
-import Model from './canvas/Model';
+import { Model } from './canvas/Model';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stage } from '@react-three/drei';
 import Navv from './Nav.tsx'
@@ -87,13 +87,16 @@ import './App.css'
       <p className="text-2xl pl-[10px] max-w-[300px] mt-5">It's here, just enjoy the art of the moment and the most essential pieces of your life.</p>
     </div>
     <div className="obj3D"> 
-    { //<Canvas style={{position: "absolute"}}>
-     // <Stage environment="city" intensity={0.6}>
-     //   <Model scale={0.5} />
-     // </Stage>
-     // <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0} />
-    //</Canvas>
-    }
+     <Canvas
+      className="z-50"
+      style={{position: "absolute" , top: "0", right: "0", width: "50vw", height: "80vh"}}
+     >
+      <Stage environment={"sunset"} intensity={0.6} shadows={false} adjustCamera={true}>
+        <Model scale={0.4} rotation={[Math.PI / 4, Math.PI / 4, 0]}/>
+      </Stage>
+      <OrbitControls enableZoom={false} autoRotateSpeed={0} />
+    </Canvas>
+    
     </div>
 
 

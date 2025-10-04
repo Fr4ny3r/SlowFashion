@@ -2,18 +2,18 @@
 
 type Products = {
 
-  name: String,
-  desc: String,
-  price: String,
-  stock: String,
-  img: String
+  name: string,
+  desc: string,
+  price: string,
+  stock: string,
+  img: string
 
 }
 
 
-function OffersCard( products : Products[]) {
+function OffersCard({ products }: { products: Products[] }) {
 
-  const item  = products.products.map(p => {
+  const item  = products.map(p => {
     return (
     <div 
       onClick={()=>{window.open("https://www.youtube.com")}}
