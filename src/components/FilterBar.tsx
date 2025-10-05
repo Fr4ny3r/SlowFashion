@@ -26,7 +26,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, currentFilters })
             <select onChange={handleCategoryChange} value={currentFilters.category}>
                 <option value="All">Todas las Categorías</option>
                 <option value="Joyería">Joyería</option>
-                <option value="Ropa">Ropa</option>
+                <option value="Clothes">Ropa</option>
                 <option value="Fragancia">Fragancia</option>
             </select>
 
@@ -35,6 +35,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, currentFilters })
                 type="text"
                 placeholder="Buscar por nombre o etiqueta..."
                 value={currentFilters.searchTerm}
+                onChange={(e) => onFilterChange({ searchTerm: e.target.value })}
             />
 
             {/* 3. Ordenamiento (Sort) - Implementación más avanzada */}

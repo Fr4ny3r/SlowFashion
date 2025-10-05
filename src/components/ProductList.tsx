@@ -6,14 +6,14 @@ function ProductList({ products } : { products: Product[] }) {
   // Filtra la lista para obtener solo los destacados
 
   
-  const featured = products.filter(product => product.isFeatured);
+  const featured = products.filter(product => (product.isFeatured && product.name != ""));
 
   return (
     <section className="featured-section">
       <h2>✨ Destacados de F.Slow</h2>
-      <div className="product-grid">
+      <div className="product-grid flex gap-5 justify-around pb-30 items-center flex-wrap py-10">
         {featured.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard products={product}/>
         ))}
       </div>
     </section>

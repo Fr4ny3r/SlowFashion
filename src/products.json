@@ -2,31 +2,79 @@
   {
     "id": 1,
     "name": "Anillo Esmeralda 'Moment'",
+    "img": "",
     "category": "Joyería",
     "subcategory": "Anillos",
     "price": 120,
     "stock": 5,
     "tags": ["Lujo", "Verde", "Oro"],
-    "isFeatured": true
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
   },
   {
     "id": 2,
     "name": "Camisa Lino 'F.Slow'",
-    "category": "Ropa",
+    "img": "",
+    "category": "Clothes",
     "subcategory": "Camisas",
     "price": 75,
     "stock": 20,
     "tags": ["Casual", "Lino", "Verano"],
-    "isFeatured": true
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
   },
   {
     "id": 3,
     "name": "Perfume 'Zenith' 50ml",
+    "img": "",
     "category": "Fragancia",
     "subcategory": "Perfumes",
     "price": 90,
     "stock": 12,
     "tags": ["Cítrico", "Larga Duración"],
-    "isFeatured": true
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
+  },
+  {
+    "id": 4,
+    "name" : "Adidas shoes",
+    "img" : "https://images.unsplash.com/photo-1551116198-01d550c9809c?q=80&w=696&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Clothes",
+    "subcategory": "Shoes",
+    "price": "45",
+    "stock": "68",
+    "tags": ["Casual", "Verano", "Blanco"],
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
+  },
+  {
+    "id": 5,
+    "name" : "",
+    "img" : "",
+    "category": "",
+    "subcategory": "",
+    "price": "",
+    "stock": "",
+    "tags": ["", "", ""],
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
+  },
+  {
+    "id": 6,
+    "name" : "",
+    "img" : "",
+    "category": "",
+    "subcategory": "",
+    "price": "",
+    "stock": "",
+    "tags": ["", "", ""],
+    "isFeatured": true,
+    "isOffer": false,
+    "discountPercentage": ""
   }
 ]
