@@ -21,19 +21,27 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, currentFilters })
   // ... (otros handlers)
 
   return (
-        <div className="filter-bar-container">
+        <div
+          style={{boxShadow: "5px 8px 1px 1px rgba(0, 0, 0, 0.6)"}}
+          className="filter-bar-container text-xl p-4 mb-6 flex flex-wrap gap-4 justify-around items-center"
+          >
             {/* 1. Filtro de Categoría */}
-            <select onChange={handleCategoryChange} value={currentFilters.category}>
-                <option value="All">Todas las Categorías</option>
-                <option value="Joyería">Joyería</option>
-                <option value="Clothes">Ropa</option>
-                <option value="Fragancia">Fragancia</option>
+            <select
+              className='p-2 rounded'
+              onChange={handleCategoryChange}
+              value={currentFilters.category}
+            >
+                <option value="All">All categories</option>
+                <option value="Jewelrys">Jewelrys</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Fragance">Fragance</option>
             </select>
 
             {/* 2. Campo de Búsqueda */}
             <input
+                className='p-2 rounded bg-gray-200 text-black'
                 type="text"
-                placeholder="Buscar por nombre o etiqueta..."
+                placeholder="Search by name or tag..."
                 value={currentFilters.searchTerm}
                 onChange={(e) => onFilterChange({ searchTerm: e.target.value })}
             />
@@ -47,8 +55,8 @@ const FilterBar: React.FC<FilterBarProps> = ({ onFilterChange, currentFilters })
             </select>
             
             {/* 4. Botón de Limpiar */}
-            <button>
-                Limpiar
+            <button className='py-2 px-10 hover:cursor-pointer bg-black text-white hover:bg-white hover:text-black transition'>
+                Clear
             </button>
         </div>
   );

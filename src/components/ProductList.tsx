@@ -10,7 +10,7 @@ function ProductList({ products } : { products: Product[] }) {
 
   return (
     <section className="featured-section">
-      <h2>✨ Destacados de F.Slow</h2>
+      <h2>Fake store the items shown are not for sale.</h2>
       <div className="product-grid flex gap-5 justify-around pb-30 items-center flex-wrap py-10">
         {featured.map(product => (
           <ProductCard products={product}/>

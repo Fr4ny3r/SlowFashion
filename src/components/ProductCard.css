@@ -1,0 +1,12 @@
+#productCard:hover {
+  box-shadow: 5px 8px 1px 1px rgba(0, 0, 0, 0.6);
+  transform: translate(-3px, -3px) scale(1.03);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+
+#productCard:hover .addToCart {
+    background-color: black;
+    color: white;
+    transition: background-color 0.1s ease, color 0.1s ease;
+}

@@ -46,7 +46,13 @@ import './App.css'
       
       useEffect(() => {
         // TypeScript sabe que productsData es Product[]
-        setProducts(productsData as Product[]); 
+        setProducts(
+          productsData.map((product: any) => ({
+            ...product,
+            price: typeof product.price === "string" ? Number(product.price) : product.price,
+            stock: typeof product.stock === "string" ? Number(product.stock) : product.stock
+          })) as Product[]
+        );
       }, []);
 
       // La función de filtrado es la misma, pero TypeScript te ayuda
@@ -80,14 +86,15 @@ import './App.css'
   return (
     <>
     <Navv />
-    <header style={{opacity: "60%"}} className="h-[80vh] relative flex justify-around items-center">
+    <header id='decoration-titles' style={{opacity: "60%"}} className="h-[80vh] relative flex justify-around items-center">
     <img className="contrast-130 absolute top-0 w-full" src="https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
     <div className="relative font-bold z-2 text-white scale-[1.1]">
       <h1 className="text-7xl font-black -ml-10">F.Slow_</h1>
       <p className="text-2xl pl-[10px] max-w-[300px] mt-5">It's here, just enjoy the art of the moment and the most essential pieces of your life.</p>
     </div>
     <div className="obj3D"> 
-     <Canvas
+    
+    <Canvas
       className="z-50"
       style={{position: "absolute" , top: "0", right: "0", width: "50vw", height: "80vh"}}
      >
@@ -96,10 +103,8 @@ import './App.css'
       </Stage>
       <OrbitControls enableZoom={false} autoRotateSpeed={0} />
     </Canvas>
-    
-    </div>
-
-
+    </div>  
+  
     </header>
     <div className="flex -translate-y-50 justify-around text-[#1f1135] relative w-9/12 gap-5 p-5">
       <CardProduct
@@ -117,14 +122,25 @@ import './App.css'
       <h1 className="mt-10 ml-10">OFFERS</h1>
       <div className="flex gap-5 justify-around pb-30 items-center flex-wrap py-10">
         <OffersCard
-          products={OffersProducts}
+          products={products.filter(p => p.isOffer)}
         />
       </div>
     </main>
-    <main className="p-10 my-30 bg-blue-500">
-      <span>
-            <div className="store-container">
-      <h1>Tienda F.Slow</h1>
+    <main>
+      <div id='other-title' className="my-30 h-[400px] bg-gray-300 text-6xl overflow-hidden relative">
+        <img
+          className='absolute contrast-130 img-titles z-1 w-full -translate-y-135 object-cover opacity-40 hover:scale-110 transition-[transform, scale] duration-2000'
+          src='https://images.unsplash.com/flagged/photo-1572392640988-ba48d1a74457?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+          alt='image'
+        />
+        <div className='siShadow opacity-100 text-gray-100 relative z-10 p-10 text-[#1f1135] w-full h-full flex flex-col justify-center items-center'>
+          <h1 className="text-7xl font-black left-0 -ml-7">F.Slow_</h1>
+          <p className=" z-10000 text-2xl mt-5 text-center max-w-3xl">At F.Slow, we believe in the power of slow fashion to create a more sustainable and ethical world. Our mission is to provide high-quality, timeless pieces that not only make you look good but also make you feel good about your choices.</p>
+        </div>
+      </div>
+    </main>
+    <main className="p-10 my-30 bg-gray-100">
+      <div className="store-container">
       
       <FilterBar onFilterChange={handleFilterChange} currentFilters={filters} />
       
@@ -133,7 +149,6 @@ import './App.css'
         <ProductList products={getFilteredProducts()} />
       </div>
     </div>
-      </span>
     </main>
     </>
   )

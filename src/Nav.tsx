@@ -57,7 +57,7 @@ function Navv() {
                 LOGIN_INFO && (
                   <div className="noShadow w-full gap-2 flex text-[1.4rem] justify-center items-center font-bold">
                     <span className="bg-white h-15 w-15 relative rounded-full">
-                      {LOGIN_INFO.name && LOGIN_INFO.last && <span className="absolute left-1/2 top-1/2 -translate-1/2 z-2000 text-black font-bold">{LOGIN_INFO.name[0]}{LOGIN_INFO.last[0]}</span>}
+                      {LOGIN_INFO.name && LOGIN_INFO.last && <span className="absolute left-1/2 top-1/2 -translate-1/2 z-2000 text-black font-bold">{LOGIN_INFO.name[0].toUpperCase()}{LOGIN_INFO.last[0].toUpperCase()}</span>}
                     </span>
                     <div className="flex justify-center flex-col">
                       <div className="flex gap-1">
