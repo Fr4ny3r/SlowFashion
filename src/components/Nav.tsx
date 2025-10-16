@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useCookies } from  'react-cookie';
+import Cart from './Cart.tsx'
 import Reg from './Reg.tsx'
 import './Nav.css';
 
 
-function Navv() {
+function Navv( { activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void } ) {
 
   const [reg, setReg] = useState<Boolean>(false)
   const [cookies, setCookie, removeCookie] = useCookies(['LOGIN_INFO'])
@@ -20,6 +21,10 @@ function Navv() {
   function handleReg(){
     setReg(!reg)
   }
+
+
+
+  
 
   return (
 
@@ -79,31 +84,7 @@ function Navv() {
                   </div>
                 )
               }
-          <div className="w-2/6 flex gap-1 items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="36"
-              height="36"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 17h-11v-14h-2" />
-              <path d="M6 5l14 1l-1 7h-13" />
-
-            </svg>
-          <span className="noShadow bg-white/90 relative text-black w-7 h-8 rounded-[100%]">
-            <span className="absolute left-1/2 top-1/2 -translate-1/2 font-bold">0</span>
-          </span>
-          </div>
-
+          <Cart activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart} />
           </div>
         </div>
       </nav>

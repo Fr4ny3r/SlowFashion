@@ -37,11 +37,11 @@ import './App.css'
     const initialFilters: Filters = { category: 'All', searchTerm: '' };
 
     const App: React.FC = () => {
-      // 1. Tipamos el estado de los productos
+
       const [products, setProducts] = useState<Product[]>([]);
-      // 2. Tipamos el estado de los filtros
       const [filters, setFilters] = useState<Filters>(initialFilters);
-      const [cart, setCart] = useState([]);
+      const [activeCart, setActiveCart] = useState<boolean>(false);
+      const [cart, setCart] = useState<Product[]>([]);
       
       useEffect(() => {
         // TypeScript sabe que productsData es Product[]
@@ -79,12 +79,20 @@ import './App.css'
         }));
       };
 
+  const addToCart = (item : any) => {
+    setCart([...cart, item]); // Add item to cart
+  };
+
+  const removeFromCart = (index : number) => {
+    const updatedCart = cart.filter((_ : any, i : number) => i !== index);
+    setCart(updatedCart); // Remove item from cart
+  };
 
 
 
   return (
     <>
-    <Navv />
+    <Navv activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
     <Hero />
     <CardProduct products={Categories}/>     
     <OffersCards products={products.filter(p => p.isOffer)}/>
