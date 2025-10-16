@@ -49,6 +49,8 @@ header{
 
 
 @media (prefers-reduced-motion: no-preference) {
-
+canvas {
+  display: hidden;
+}
 }
 
