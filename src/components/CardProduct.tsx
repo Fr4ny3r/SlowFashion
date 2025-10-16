@@ -30,9 +30,10 @@ function CardProduct({ products }: { products: Products[] }) {
 
 
   return (
-      <>
+    <div className="flex -translate-y-50 justify-around text-[#1f1135] relative w-9/12 gap-5 p-5">
         {item}
-      </>
+      <div></div>
+    </div>
     )
 
 
