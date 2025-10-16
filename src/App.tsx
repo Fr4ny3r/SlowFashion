@@ -97,7 +97,7 @@ import './App.css'
     <CardProduct products={Categories}/>     
     <OffersCards products={products.filter(p => p.isOffer)}/>
     <About />
-    <ProductsSection getFilteredProducts={getFilteredProducts} handleFilterChange={handleFilterChange} filters={filters} />
+    <ProductsSection activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart} getFilteredProducts={getFilteredProducts} handleFilterChange={handleFilterChange} filters={filters} />
     <EndPage />
     </>
   )

@@ -2,7 +2,7 @@ import './ProductCard.css'
 import type { Product } from '../types';
 
 
-function CardProduct({ products }: { products: Product }) {
+function CardProduct({ products, activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { products: Product, activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void }) {
 
 
   const tags = products.tags.map((tag, index) => (
@@ -32,7 +32,10 @@ function CardProduct({ products }: { products: Product }) {
       </div>
 
       <div className="noShadow w-full font-bold text-black flex justify-between items-center border-t border-black/10">
-        <span className="addToCart relative p-2 pl-6 w-full ">
+        <span
+          onClick={()=>{addToCart(products)}}
+          className="addToCart relative p-2 pl-6 w-full hover:cursor-pointer"
+        >
           Add to cart
         </span>
         <span className="relative p-2 px-4 w-fit bg-[#fbdd74] flex justify-center items-center text-center font-bold">
