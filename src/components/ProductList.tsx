@@ -43,7 +43,7 @@ function ProductList({
   // --- 🔹 Render ---
   return (
     <section className="featured-section flex flex-col items-center">
-      <h2>Fake store — the items shown are not for sale.</h2>
+      <h2 className='w-full'>Fake store — the items shown are not for sale.</h2>
 
       <div className="product-grid flex gap-5 justify-around pb-30 items-center flex-wrap py-10">
         {currentProducts.map((product) => (

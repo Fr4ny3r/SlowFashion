@@ -7,7 +7,6 @@ import OffersCards from './components/OffersCards.tsx'
 import About from './components/About.tsx';
 import EndPage from './components/EndPage.tsx'
 import ProductsSection from './components/ProductsSection.tsx'
-import Location from './components/Location.tsx'
 //import productsData from './products.json';
 import './App.css'
 
@@ -134,7 +133,6 @@ console.log("Products Data:", products);
     <OffersCards products={products.filter(p => p.isOffer && p.discountPercentage)}/>
     <About />
     <ProductsSection activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart} getFilteredProducts={getFilteredProducts} handleFilterChange={handleFilterChange} filters={filters} />
-    <Location />
     <EndPage />
     </>
   )
