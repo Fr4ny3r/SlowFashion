@@ -12,7 +12,7 @@ export interface Product {
   subcategory: string;
   price: number;
   stock: number;
-  tags: string[];
+  tags: string[]; // Coma separado
   isFeatured: boolean;
   isOffer: boolean;
   discountPercentage?: number; // Opcional, solo si es oferta

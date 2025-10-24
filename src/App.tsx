@@ -7,7 +7,8 @@ import OffersCards from './components/OffersCards.tsx'
 import About from './components/About.tsx';
 import EndPage from './components/EndPage.tsx'
 import ProductsSection from './components/ProductsSection.tsx'
-import productsData from './products.json';
+import Location from './components/Location.tsx'
+//import productsData from './products.json';
 import './App.css'
 
 
@@ -39,19 +40,54 @@ import './App.css'
     const App: React.FC = () => {
 
       const [products, setProducts] = useState<Product[]>([]);
+      const [productsData, setProductsData] = useState<Product[]>([]);
+      const [isLoading, setIsLoading] = useState(true);
+      const [error, setError] = useState(null);
       const [filters, setFilters] = useState<Filters>(initialFilters);
       const [activeCart, setActiveCart] = useState<boolean>(false);
       const [cart, setCart] = useState<Product[]>([]);
       
+      const API_URL = "https://api.sheetbest.com/sheets/dacbb681-79d3-4bf1-b2ce-61fb72027a46";
+
       useEffect(() => {
-        // TypeScript sabe que productsData es Product[]
-        setProducts(
-          productsData.map((product: any) => ({
-            ...product,
-            price: typeof product.price === "string" ? Number(product.price) : product.price,
-            stock: typeof product.stock === "string" ? Number(product.stock) : product.stock
-          })) as Product[]
-        );
+
+
+      const fetchProducts = async () => {
+            try {
+              const response = await fetch(API_URL);
+
+              // 1. Verificar si la respuesta fue exitosa (código 200-299)
+              if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+              }
+
+              // 2. Convertir la respuesta del cuerpo a JSON
+              const data = await response.json(); 
+              
+              // 3. Almacenar los datos en el estado
+              setProducts(
+                data.map((product: any) => ({
+                  ...product,
+                  price: typeof product.price === "string" ? Number(product.price) : product.price,
+                  stock: typeof product.stock === "string" ? Number(product.stock) : product.stock,
+                  isOffer: product.isOffer === 'TRUE' ? Boolean(product.isOffer) : false,
+                  isFeatured: product.isFeatured === 'TRUE' ? Boolean(product.isFeatured) : false,
+                  tags: typeof product.tags === 'string' ? product.tags.split(", ") : [],
+                })) as Product[]
+              );
+
+
+            } catch (err : any) {
+              // Manejo de errores de red o del servidor
+              setError(err.message);
+            } finally {
+              // Indica que la carga ha terminado
+              setIsLoading(false);
+            }
+          };
+        
+          fetchProducts();
+
       }, []);
 
       // La función de filtrado es la misma, pero TypeScript te ayuda
@@ -88,16 +124,17 @@ import './App.css'
     setCart(updatedCart); // Remove item from cart
   };
 
-
+console.log("Products Data:", products);
 
   return (
     <>
     <Navv activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
     <Hero />
     <CardProduct products={Categories}/>     
-    <OffersCards products={products.filter(p => p.isOffer)}/>
+    <OffersCards products={products.filter(p => p.isOffer && p.discountPercentage)}/>
     <About />
     <ProductsSection activeCart={activeCart} setActiveCart={setActiveCart} cart={cart} setCart={setCart} addToCart={addToCart} removeFromCart={removeFromCart} getFilteredProducts={getFilteredProducts} handleFilterChange={handleFilterChange} filters={filters} />
+    <Location />
     <EndPage />
     </>
   )

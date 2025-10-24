@@ -4,11 +4,13 @@ import type { Product } from '../types';
 
 function CardProduct({ products, activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { products: Product, activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void }) {
 
+  
 
-  const tags = products.tags.map((tag, index) => (
+  const tags = products.tags.map((tag : string, index : number) => (
     tag && <span key={index} className="inline-block bg-[#e2daeb] text-sm text-[#1f1135] mr-2 mt-2 px-2 py-1 rounded-full">{tag}</span>
   ));
   
+
   return (
     <div
       id='productCard'

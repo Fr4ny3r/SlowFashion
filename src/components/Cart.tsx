@@ -39,7 +39,7 @@ function Cart( { activeCart, setActiveCart, cart, setCart, addToCart, removeFrom
 
   
   return (
-    <div className="w-2/6 flex gap-1 bg-red-500 items-center">
+    <div className="w-2/6 flex gap-1 items-center">
       <svg
         onClick={() => setActiveCart(!activeCart)}
         xmlns="http://www.w3.org/2000/svg"

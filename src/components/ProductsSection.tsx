@@ -1,9 +1,11 @@
 import ProductList from './ProductList';
 import FilterBar from './FilterBar';
+import type { Filters, Product } from '../types';
 
 
 
-function ProductsSection( {getFilteredProducts, handleFilterChange, filters}: any, { activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void } ) {
+
+function ProductsSection( { activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart, getFilteredProducts, handleFilterChange, filters } : { activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void, getFilteredProducts : () => Product[], handleFilterChange : (newFilters : any)=> void,  filters : Filters} ) {
 
   return (
     <main className="p-10 my-30 bg-gray-100">
