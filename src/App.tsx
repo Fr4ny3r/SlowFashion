@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Product, Filters, Category } from './types';
+import { supabase } from './components/supabase.js';
 import Navv from './components/Nav.tsx'
 import Hero from './components/Hero.tsx'
 import CardProduct from './components/CardProduct.tsx'
@@ -53,24 +54,24 @@ import './App.css'
 
       const fetchProducts = async () => {
             try {
-              const response = await fetch(API_URL);
+              // const response = await fetch(API_URL);
 
-              // 1. Verificar si la respuesta fue exitosa (código 200-299)
-              if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
+              const { data, error } = await supabase
+                .from('productos')
+                .select('*');
+
+              if (error) {
+                throw error;
               }
 
-              // 2. Convertir la respuesta del cuerpo a JSON
-              const data = await response.json(); 
-              
-              // 3. Almacenar los datos en el estado
+              console.log("Supabase Data:", data);
+
               setProducts(
                 data.map((product: any) => ({
                   ...product,
                   price: typeof product.price === "string" ? Number(product.price) : product.price,
                   stock: typeof product.stock === "string" ? Number(product.stock) : product.stock,
-                  isOffer: product.isOffer === 'TRUE' ? Boolean(product.isOffer) : false,
-                  isFeatured: product.isFeatured === 'TRUE' ? Boolean(product.isFeatured) : false,
+
                   tags: typeof product.tags === 'string' ? product.tags.split(", ") : [],
                 })) as Product[]
               );

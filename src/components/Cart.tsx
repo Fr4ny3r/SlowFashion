@@ -1,5 +1,5 @@
 
-function Cart( { activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (_ : any, i : number) => void } ) {
+function Cart( { activeCart, setActiveCart, cart, setCart, addToCart, removeFromCart } : { activeCart: any, setActiveCart: any, cart: any, setCart: any, addToCart : (item : any) => void, removeFromCart : (i : number) => void } ) {
   
   const CartBox = () => {
     return (
@@ -12,13 +12,14 @@ function Cart( { activeCart, setActiveCart, cart, setCart, addToCart, removeFrom
         ) : (
           cart.map((item: any, index: number) => (
             <div key={index} className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="font-bold">{item.name}</h3>
+              <img src={item.img} alt={item.name} className="w-16 h-16 object-cover mr-1" />
+              <div className="flex-1 mx-2">
+                <h3 className="font-bold text-black">{item.name}</h3>
                 <p className="text-gray-600">${item.price.toFixed(2)}</p>
               </div>
               <button
-                onClick={() => removeFromCart(null, index)}
-                className="text-red-500 hover:underline"
+                onClick={() => removeFromCart(index)}
+                className="text-red-500 hover:underline hover:cursor-pointer"
               >
                 Remove
               </button>
