@@ -69,7 +69,7 @@ import './App.css'
               setProducts(
                 data.map((product: any) => ({
                   ...product,
-                  price: typeof product.price === "string" ? Number(product.price) : product.price,
+                  price: typeof product.price === "string" ? Number(Math.floor( product.price - (Math.floor(product.price) * (product.discountPercentage ? product.discountPercentage : 0) / 100))) : Math.floor( product.price - (Math.floor(product.price) * (product.discountPercentage ? product.discountPercentage : 0) / 100)),
                   stock: typeof product.stock === "string" ? Number(product.stock) : product.stock,
 
                   tags: typeof product.tags === 'string' ? product.tags.split(", ") : [],

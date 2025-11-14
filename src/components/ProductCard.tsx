@@ -14,7 +14,7 @@ function CardProduct({ products, activeCart, setActiveCart, cart, setCart, addTo
   return (
     <div
       id='productCard'
-      onClick={() => { window.open("https://www.youtube.com") }}
+      onClick={() => { }}
       className="bg-[#FFFFFF] outline-black outline-1 flex flex-col items-center justify-center bg-[#FFFFFF] flex w-full opacity-100 relative hover:cursor-pointer transition-all text-red-100 text-2xl z-50 text-[#1f1135]"
       style={{ maxWidth: "380px" }}
     >
